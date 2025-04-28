@@ -9,6 +9,23 @@ public class CounterBenchMark {
     public static void main(String[] args) throws InterruptedException {
         testAtomicInteger();
         testLongAdder();
+
+        //Under massive concurrency, AtomicInteger can become a hotspot due to CAS retry storms.
+        //LongAdder splits the contention by maintaining several counters, massively improving performance.
+        //For scenarios where reads dominate, StampedLock allows optimistic reading for even better scaling.
+
+        //AtomicInteger uses CAS (Compare-And-Swap) at CPU level.
+        //When too many threads try to update it simultaneously, they CAS fail and retry again and again.
+        //CPU contention becomes very high → heavy "spinning" (retry loops) → low throughput → high CPU utilization.
+        //This is called "false sharing" or "contention bottleneck".
+
+        //Why LongAdder is better:
+        //Instead of one counter, it maintains internal cells(small counters).
+        //Threads update different cells →much less contention.
+        //Final result is sum of all cells.
+        //Massively better at high concurrency.
+
+
     }
 
     static void testAtomicInteger() throws InterruptedException {
