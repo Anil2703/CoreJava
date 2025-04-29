@@ -1,10 +1,10 @@
-package com.rocky.collections.list;
+package com.rocky.collections.list.arrayList.iterators;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ArrayListDemo {
+public class IteratorUsingArrayList {
     public static void main(String[] args) {
         // Create an ArrayList
         List<String> list = new ArrayList<>();
@@ -14,21 +14,7 @@ public class ArrayListDemo {
         list.add("Banana");
         list.add("Cherry");
 
-        // Print the ArrayList
-        //System.out.println("ArrayList: " + list);
-
-        // Access elements from the ArrayList
-        //String firstElement = list.get(0);
-        //System.out.println("First element: " + firstElement);
-
-        // Remove an element from the ArrayList
-        //list.remove("Banana");
-        //System.out.println("After removal: " + list);
-
-        // Get the size of the ArrayList
-        //int size = list.size();
-        //System.out.println("Size of ArrayList: " + size);
-
+        //Throws ConcurrentModificationException if we remove while iterating
         //Iterate ArrayList
         /*for(String fruit : list) {
             if(fruit.equals("Cherry")) {
@@ -38,8 +24,8 @@ public class ArrayListDemo {
         // Print the ArrayList after removal
         System.out.println(list);
 
-        //Iterate ArrayList using for loop
-        System.out.println("Iterating using for loop:");
+        //Iterate ArrayList using Iterator
+        System.out.println("Iterating using iterator:");
         Iterator iterator = list.iterator();
         while(iterator.hasNext()) {
             String currentFruit = (String) iterator.next();
